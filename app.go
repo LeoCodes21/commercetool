@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/LeoCodes21/commercetool/commands"
 	"github.com/alecthomas/kong"
 )
@@ -12,6 +13,7 @@ var cli struct {
 }
 
 func main() {
+	fmt.Println("CommerceTool v1.0.0 by heyitsleo")
 	ctx := kong.Parse(&cli)
 	err := ctx.Run(&commands.Context{Debug: cli.Debug})
 	ctx.FatalIfErrorf(err)
