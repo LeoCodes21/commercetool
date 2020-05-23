@@ -9,20 +9,6 @@ import (
 	"time"
 )
 
-type CarConfigItem struct {
-	CatalogTitle     string `json:"catalog_title"`
-	ShortDescription string `json:"short_description"`
-	LongDescription  string `json:"long_description"`
-	Name             string `json:"name"`
-	Icon             string `json:"icon"`
-	SubType          string `json:"sub_type"`
-}
-
-type CarConfig struct {
-	CarName string          `json:"car_name"`
-	Items   []CarConfigItem `json:"items"`
-}
-
 type GenerateSpecificScriptCmd struct {
 	CarConfigPath    string `arg:"" name:"config" help:"The path to the CarConfig file" type:"path"`
 	ScriptOutputPath string `arg:"" name:"out-path" help:"The path (including file name) where the script should be created" type:"path"`
@@ -46,7 +32,7 @@ func (g *GenerateSpecificScriptCmd) Run(_ *Context) error {
 
 	defer configFile.Close()
 
-	var carConfig CarConfig
+	var carConfig lib.CarConfig
 
 	err = json.NewDecoder(configFile).Decode(&carConfig)
 
