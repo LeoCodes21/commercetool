@@ -80,7 +80,19 @@ func (g *GenerateSpecificScriptCmd) Run(_ *Context) error {
 			subTypeLine := fmt.Sprintf("update_field virtualitem 0x%08x subType \"%s\"", itemNameHash, item.SubType)
 			brandLine := fmt.Sprintf("update_field virtualitem 0x%08x brand \"visual_brand_nfs\"", itemNameHash)
 
-			itemLineGroup := []string{addNodeLine, longDescriptionLine, shortDescriptionLine, typeLine, itemNameLine, titleLine, hashLine, iconLine, subTypeLine, brandLine}
+			itemLineGroup := []string{
+				addNodeLine,
+				longDescriptionLine,
+				shortDescriptionLine,
+				typeLine,
+				itemNameLine,
+				titleLine,
+				hashLine,
+				iconLine,
+				subTypeLine,
+				fmt.Sprintf("add_field virtualitem 0x%08x brand", itemNameHash),
+				brandLine,
+			}
 
 			scriptLines = append(scriptLines, itemLineGroup...)
 		}
